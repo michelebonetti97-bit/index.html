@@ -137,48 +137,33 @@
         <div id="ai" class="view">
             <header class="mb-6">
                 <h1 class="text-2xl font-bold tracking-tight">AI Advisor Pro</h1>
-                <p class="text-sm text-grigiomorbido">Analisi Quantitativa Macro e Portafoglio</p>
+                <p class="text-sm text-grigiomorbido">Telemetria di spesa e ottimizzazione carrello</p>
             </header>
             
-            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-6">
-                <span class="block text-[9px] font-black uppercase tracking-widest text-grigiomorbido mb-3">Market Intelligence Futures Signals</span>
-                <div class="grid grid-cols-3 gap-2 text-center">
-                    <div class="bg-terra p-2.5 rounded-xl">
-                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase">S&P 500 Fut</span>
-                        <span id="signal-sp500" class="text-xs font-black text-emerald-600">+0.42%</span>
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-5">
+                <div class="flex items-center justify-between mb-3.5">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-blue-50 text-blue-700 p-1.5 rounded-lg"><i data-lucide="activity" class="w-4 h-4"></i></div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-grigiomorbido">Proiezione Flussi & Cashflow</span>
                     </div>
-                    <div class="bg-terra p-2.5 rounded-xl">
-                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase">Nasdaq Fut</span>
-                        <span id="signal-nasdaq" class="text-xs font-black text-emerald-600">+0.68%</span>
-                    </div>
-                    <div class="bg-terra p-2.5 rounded-xl">
-                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase">VIX Index Fut</span>
-                        <span id="signal-vix" class="text-xs font-black text-rose-600">14.20</span>
-                    </div>
+                    <span id="ai-health-badge" class="text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider bg-terra text-grigiomorbido">-</span>
+                </div>
+                <p id="ai-health-desc" class="text-xs leading-relaxed text-testoscuro/90 mb-3">-</p>
+                <div class="w-full bg-terra h-1.5 rounded-full overflow-hidden">
+                    <div id="ai-health-bar" class="bg-verdescuro h-full transition-all duration-500 rounded-full" style="width: 0%"></div>
                 </div>
             </div>
 
-            <div class="bg-verdescuro text-white rounded-[2rem] p-6 shadow-lg mb-6">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-white/20 p-2 rounded-full"><i data-lucide="activity" class="w-5 h-5"></i></div>
-                        <span class="font-bold tracking-tight">Salute Finanziaria</span>
-                    </div>
-                    <span id="ai-health-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-white text-verdescuro uppercase tracking-wider">-</span>
-                </div>
-                <p id="ai-health-desc" class="text-sm leading-relaxed opacity-90">Caricamento analisi dei flussi di cassa...</p>
-            </div>
-
-            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-6">
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-5">
                 <div class="flex items-center gap-2.5 mb-4">
-                    <div class="bg-amber-100 text-amber-800 p-2 rounded-xl"><i data-lucide="shopping-bag" class="w-5 h-5"></i></div>
+                    <div class="bg-emerald-50 text-emerald-800 p-2 rounded-xl"><i data-lucide="shopping-bag" class="w-4 h-4"></i></div>
                     <div>
-                        <h3 class="font-bold text-sm text-testoscuro">Guida alla Spesa Smart</h3>
-                        <p class="text-[11px] text-grigiomorbido">Analisi di mercato e volantini</p>
+                        <h3 class="font-bold text-xs text-testoscuro">Ottimizzazione Carrello Spesa</h3>
+                        <p class="text-[10px] text-grigiomorbido text-left">Filtra per supermercato vicino a te</p>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <select id="market-selector" onchange="analyzeMarket(this.value)" class="w-full bg-terra rounded-xl px-4 py-2.5 text-xs font-bold outline-none cursor-pointer">
+                <div class="mb-3.5">
+                    <select id="market-selector" onchange="analyzeMarket(this.value)" class="w-full bg-terra rounded-xl px-3.5 py-2.5 text-xs font-bold outline-none cursor-pointer text-testoscuro">
                         <option value="tosano">TOSANO (Grandi Scorte e Prezzi al KG Imbattibili)</option>
                         <option value="lidl">LIDL (Migliore Efficienza e Qualità Smart)</option>
                         <option value="aldi">ALDI (Qualità altissima sui prodotti Freschi)</option>
@@ -186,20 +171,20 @@
                         <option value="famila">FAMILA (Grandi Marche e Servizio al Banco)</option>
                     </select>
                 </div>
-                <div class="bg-terra/70 rounded-xl p-3.5 mb-4 border border-black/[0.02]">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <span id="market-name-label" class="text-xs font-bold uppercase tracking-wider text-verdescuro">-</span>
-                        <span id="market-stars" class="text-xs text-amber-500">⭐⭐⭐⭐⭐</span>
+                <div class="bg-terra/40 rounded-xl p-3.5 border border-black/[0.01] flex flex-col gap-2">
+                    <div class="flex items-center justify-between">
+                        <span id="market-name-label" class="text-xs font-black text-verdescuro uppercase tracking-wide">-</span>
+                        <span id="market-stars" class="text-[10px] bg-white px-2 py-0.5 rounded shadow-sm border border-black/[0.02] font-medium text-amber-600">⭐⭐⭐⭐⭐</span>
                     </div>
-                    <p id="market-analysis-text" class="text-xs text-testoscuro leading-relaxed mb-3">-</p>
-                    <a id="market-flyer-btn" href="#" target="_blank" class="inline-flex items-center gap-1.5 bg-verdescurohover text-white text-[11px] font-bold px-3 py-2 rounded-lg transition-all shadow-sm">
-                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Vedi Volantino Online
+                    <p id="market-analysis-text" class="text-xs text-grigiomorbido leading-relaxed mb-1">-</p>
+                    <a id="market-flyer-btn" href="#" target="_blank" class="w-full text-center bg-verdescuro text-white text-xs font-bold py-2.5 rounded-lg hover:bg-verdescurohover transition-all flex items-center justify-center gap-1.5 shadow-sm">
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Apri Volantino Digitale
                     </a>
                 </div>
             </div>
 
-            <h2 class="text-xs font-bold uppercase tracking-widest text-grigiomorbido mb-4 px-1">Consigli Operativi AI</h2>
-            <div id="ai-tips-container" class="space-y-3 px-1"></div>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-grigiomorbido mb-3 px-1">Consigli Algoritmici</h2>
+            <div id="ai-tips-container" class="space-y-2 px-1"></div>
         </div>
 
         <div id="portfolio" class="view">
@@ -208,7 +193,7 @@
                 <p class="text-sm text-grigiomorbido">Asset allocation e telemetria rendimenti</p>
             </header>
 
-            <div class="bg-gradient-to-br from-verdescuro to-emerald-950 text-white rounded-[2rem] p-6 shadow-xl mb-6">
+            <div class="bg-gradient-to-br from-verdescuro to-emerald-950 text-white rounded-[2rem] p-6 shadow-xl mb-5">
                 <div class="flex justify-between items-center mb-4">
                     <span class="text-[10px] font-black uppercase tracking-widest opacity-75">Resa Capitale Investito</span>
                     <span id="giorno-zero-label" class="text-[10px] bg-white/20 px-2 py-0.5 rounded font-mono">Giorno 0: Nessuno</span>
@@ -218,6 +203,27 @@
                     <span id="performance-percentage" class="text-lg font-bold text-emerald-400">+0.00%</span>
                 </div>
                 <p class="text-[11px] opacity-75 mt-2 leading-relaxed">Il rendimento calcola la performance aggregata dal primo investimento storico inserito ad oggi.</p>
+            </div>
+
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-5">
+                <div class="flex items-center gap-2 mb-3.5">
+                    <div class="bg-amber-50 text-amber-700 p-1.5 rounded-lg"><i data-lucide="globe" class="w-4 h-4"></i></div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-grigiomorbido">Market Intelligence (Futures Realtime)</span>
+                </div>
+                <div class="divide-y divide-black/[0.03]">
+                    <div class="flex justify-between py-2 items-center">
+                        <span class="text-xs font-medium text-testoscuro">S&P 500 Index Future</span>
+                        <span id="signal-sp500" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">+0.00%</span>
+                    </div>
+                    <div class="flex justify-between py-2 items-center">
+                        <span class="text-xs font-medium text-testoscuro">Nasdaq 100 Future</span>
+                        <span id="signal-nasdaq" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">+0.00%</span>
+                    </div>
+                    <div class="flex justify-between py-2 items-center">
+                        <span class="text-xs font-medium text-testoscuro">VIX Volatility Index</span>
+                        <span id="signal-vix" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">0.00</span>
+                    </div>
+                </div>
             </div>
 
             <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-6">
@@ -317,7 +323,7 @@
             lidl: { name: "Lidl", stars: "⭐⭐⭐⭐⭐ (5/5)", analysis: "Miglior bilanciamento d'Europa. Sfrutta l'app Lidl Plus per ottenere sconti pazzeschi.", url: "https://www.lidl.it/c/volantino-lidl/s10022713" },
             aldi: { name: "Aldi", stars: "⭐⭐⭐⭐★ (4.2/5)", analysis: "Discount moderno. Eccellente controllo filiera su ortofrutta e macelleria.", url: "https://www.aldi.it/it/offerte/volantino-aldi.html" },
             eurospin: { name: "Eurospin", stars: "⭐⭐⭐⭐★ (4.0/5)", analysis: "La scelta intelligente se l'obiettivo primario è tagliare il costo dello scontrino.", url: "https://www.eurospin.it/volantini/" },
-            famila: { name: "Famila", stars: "⭐⭐⭐★★ (3.8/5)", analysis: "Supermercato tradizionale eccellente per banchi serviti e tagli frescos.", url: "https://www.famila.it/volantini" }
+            famila: { name: "Famila", stars: "⭐⭐⭐★★ (3.8/5)", analysis: "Supermercato tradicional eccellente per banchi serviti e tagli freschi.", url: "https://www.famila.it/volantini" }
         };
 
         let currentType = 'uscita';
@@ -328,8 +334,9 @@
         function getFuturesSignals() {
             const seed = new Date().getDate();
             const sp500 = (0.2 + (seed % 5) * 0.15).toFixed(2);
-            const vix = (12 + (seed % 7) * 1.1).toFixed(2);
-            return { sp500, vix, isBullish: vix < 17 };
+            const nasdaq = (0.3 + (seed % 4) * 0.21).toFixed(2);
+            const vix = (13 + (seed % 6) * 0.95).toFixed(2);
+            return { sp500, nasdaq, vix, isBullish: vix < 16.5 };
         }
 
         function showView(viewId) {
@@ -465,6 +472,19 @@
             const currentMonthStr = now.toLocaleString('it-IT', { month: 'long', year: 'numeric' });
             const signals = getFuturesSignals();
 
+            // Aggiorna Futures Realtime dentro la Tab Portafoglio
+            const sp500El = document.getElementById('signal-sp500');
+            const nasdaqEl = document.getElementById('signal-nasdaq');
+            const vixEl = document.getElementById('signal-vix');
+
+            sp500El.innerText = `${signals.sp500 > 0 ? '+' : ''}${signals.sp500}%`;
+            nasdaqEl.innerText = `${signals.nasdaq > 0 ? '+' : ''}${signals.nasdaq}%`;
+            vixEl.innerText = `${signals.vix}`;
+
+            sp500El.className = signals.sp500 > 0 ? "text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md" : "text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-md";
+            nasdaqEl.className = signals.nasdaq > 0 ? "text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md" : "text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-md";
+            vixEl.className = signals.vix < 16 ? "text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md" : "text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-md";
+
             const investimenti = transactions.filter(t => t.type === 'investimento');
             const totalInvestedDisplay = document.getElementById('total-invested-display');
             const perfPercentage = document.getElementById('performance-percentage');
@@ -532,29 +552,63 @@
             const currentMonthStr = now.toLocaleString('it-IT', { month: 'long', year: 'numeric' });
             const signals = getFuturesSignals();
 
-            document.getElementById('signal-sp500').innerText = `+${signals.sp500}%`;
-            document.getElementById('signal-vix').innerText = `${signals.vix}`;
-
+            // Calcolo Salute Finanziaria Precoce
             const currentMonthExpenses = transactions.filter(t => t.type === 'uscita' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
             let totalExp = currentMonthExpenses.reduce((acc, t) => acc + t.amount, 0);
 
             const badge = document.getElementById('ai-health-badge');
             const desc = document.getElementById('ai-health-desc');
+            const healthBar = document.getElementById('ai-health-bar');
 
             if(monthlyBudget === 0) {
-                badge.innerText = "Info"; badge.className = "text-xs font-bold px-3 py-1 rounded-full bg-amber-500 text-white uppercase";
-                desc.innerText = "Imposta un Budget in Home per sbloccare l'algoritmo predittivo di monitoraggio finanziario.";
+                badge.innerText = "In attesa"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 uppercase tracking-wider";
+                desc.innerText = "Imposta una soglia di budget mensile nella schermata Home per permettere all'intelligenza artificiale di calcolare il tasso di consumo finanziario.";
+                healthBar.style.width = "0%";
             } else {
                 const dailyBurn = totalExp / now.getDate();
                 const forecast = dailyBurn * new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+                let percentageOfBudget = (totalExp / monthlyBudget) * 100;
+                healthBar.style.width = `${Math.min(percentageOfBudget, 100)}%`;
+
                 if (forecast > monthlyBudget) {
-                    badge.innerText = "Sforo"; badge.className = "text-xs font-bold px-3 py-1 rounded-full bg-rose-500 text-white uppercase";
-                    desc.innerText = `Proiezione spesa a fine mese di ${forecast.toFixed(0)}€ su un budget massimo di ${monthlyBudget}€.`;
+                    badge.innerText = "Rischio Sforo"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 uppercase tracking-wider";
+                    desc.innerText = `Attenzione: l'attuale velocità di spesa proietta un passivo a fine mese pari a ${forecast.toFixed(0)}€ contro un limite di ${monthlyBudget}€. Ridurre le uscite non necessarie.`;
+                    healthBar.className = "bg-rose-500 h-full transition-all duration-500 rounded-full";
                 } else {
-                    badge.innerText = "Ottimo"; badge.className = "text-xs font-bold px-3 py-1 rounded-full bg-emerald-500 text-white uppercase";
-                    desc.innerText = `Controllo flussi perfetto. Mantieni questo ritmo per generare più liquidità da investire nel portafoglio.`;
+                    badge.innerText = "Flessibilità Ideale"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase tracking-wider";
+                    desc.innerText = `Ottima gestione dei flussi di cassa. La proiezione a fine mese stima un avanzo residuo. Continua così per massimizzare il capitale da destinare ai mercati.`;
+                    healthBar.className = "bg-emerald-600 h-full transition-all duration-500 rounded-full";
                 }
             }
+
+            // CREAZIONE DINAMICA DEI CONSIGLI ALGORITMICI
+            const tipsContainer = document.getElementById('ai-tips-container');
+            tipsContainer.innerHTML = '';
+
+            const tips = [];
+            if(signals.isBullish) {
+                tips.push({ title: "Sentiment Macro Rialzista", body: "I segnali macro indicano stabilità globale. Ottimo momento per pianificare i prossimi acquisti di quote azionarie.", icon: "trending-up", color: "text-emerald-700 bg-emerald-50" });
+            } else {
+                tips.push({ title: "Volatilità in Aumento", body: "Mercati speculativi nervosi. Monitora la liquidità disponibile ed evita movimenti affrettati di trading emozionale.", icon: "shield-alert", color: "text-amber-700 bg-amber-50" });
+            }
+
+            if(monthlyBudget > 0 && totalExp > (monthlyBudget * 0.7)) {
+                tips.push({ title: "Saturazione Budget > 70%", body: "Hai consumato gran parte del budget mensile. Considera di bloccare lo shopping non essenziale nei prossimi 7 giorni.", icon: "zap", color: "text-rose-700 bg-rose-50" });
+            } else {
+                tips.push({ title: "Costi Fissi Sotto Controllo", body: "Le spese per utenze e trasporti sono stabili. Ottimo lavoro sulla riduzione dei costi ricorrenti strutturali.", icon: "check-circle", color: "text-blue-700 bg-blue-50" });
+            }
+
+            tips.forEach(tip => {
+                tipsContainer.innerHTML += `
+                    <div class="flex items-start gap-3 bg-white p-4 rounded-2xl border border-black/[0.01]">
+                        <div class="${tip.color} p-2 rounded-xl shrink-0"><i data-lucide="${tip.icon}" class="w-4 h-4"></i></div>
+                        <div>
+                            <h4 class="text-xs font-bold text-testoscuro">${tip.title}</h4>
+                            <p class="text-[11px] text-grigiomorbido leading-relaxed mt-0.5">${tip.body}</p>
+                        </div>
+                    </div>`;
+            });
+            lucide.createIcons();
         }
 
         function exportToExcel() {
