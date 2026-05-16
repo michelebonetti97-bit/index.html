@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MB Finance Ultimate</title>
+    <title>MB Finance Ultimate Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -41,10 +41,11 @@
 
     <div class="max-w-md mx-auto px-4 pt-6">
         
+        <!-- SEZIONE HOME -->
         <div id="home" class="view active">
             <header class="mb-5 flex justify-between items-center">
                 <div>
-                    <h1 class="text-2xl font-bold tracking-tight">MB Finance <span class="text-xs bg-verdescuro text-white px-2 py-0.5 rounded-full font-mono">ULTIMATE</span></h1>
+                    <h1 class="text-2xl font-bold tracking-tight">MB Finance <span class="text-xs bg-verdescuro text-white px-2 py-0.5 rounded-full font-mono">PRO ADVISOR</span></h1>
                     <p id="date-now" class="text-sm text-grigiomorbido capitalize"></p>
                 </div>
                 <div class="bg-white/80 border border-black/[0.02] rounded-2xl px-4 py-2 text-right shadow-sm">
@@ -53,6 +54,7 @@
                 </div>
             </header>
 
+            <!-- CARD BUDGET -->
             <section class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-5">
                 <div class="flex justify-between items-center mb-3">
                     <div>
@@ -72,6 +74,7 @@
                 </div>
             </section>
 
+            <!-- FORM TRANSAZIONI -->
             <div class="bg-white rounded-[2rem] p-6 shadow-sm border border-black/[0.02] mb-6">
                 <form onsubmit="addTransaction(event)">
                     <div class="grid grid-cols-3 gap-2 p-1 bg-terra rounded-2xl mb-5">
@@ -110,6 +113,7 @@
             <div id="recent-list" class="space-y-3 px-1"></div>
         </div>
 
+        <!-- SEZIONE ARCHIVIO -->
         <div id="archive" class="view">
             <header class="flex justify-between items-center mb-6">
                 <div>
@@ -123,6 +127,7 @@
             <div id="archive-list" class="space-y-4"></div>
         </div>
 
+        <!-- SEZIONE GRAFICI -->
         <div id="charts" class="view text-center">
             <header class="mb-6 text-left">
                 <h1 class="text-2xl font-bold tracking-tight">Analisi Spese</h1>
@@ -134,45 +139,109 @@
             <div id="chart-legend" class="grid grid-cols-2 gap-4 text-left px-2"></div>
         </div>
 
+        <!-- SEZIONE AI ADVISOR PRO STRA-POTENZIATA -->
         <div id="ai" class="view">
-            <header class="mb-6">
+            <header class="mb-5">
                 <h1 class="text-2xl font-bold tracking-tight">AI Advisor Pro</h1>
-                <p class="text-sm text-grigiomorbido">Motore predittivo e ottimizzazione finanziaria</p>
+                <p class="text-sm text-grigiomorbido">Engine multi-panel di controllo patrimoniale</p>
             </header>
             
-            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-5">
-                <div class="flex items-center justify-between mb-4">
+            <!-- PANEL 1: TELEMETRIA DI FLUSSO E RUNWAY -->
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-4">
+                <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
                         <div class="bg-emerald-50 text-emerald-800 p-1.5 rounded-lg"><i data-lucide="activity" class="w-4 h-4"></i></div>
                         <span class="text-[10px] font-bold uppercase tracking-wider text-grigiomorbido">Salute Predittiva Cashflow</span>
                     </div>
                     <span id="ai-health-badge" class="text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider bg-terra text-grigiomorbido">-</span>
                 </div>
-                
-                <p id="ai-health-desc" class="text-xs leading-relaxed text-testoscuro/90 mb-4">-</p>
-                
+                <p id="ai-health-desc" class="text-xs leading-relaxed text-testoscuro/90 mb-3.5">-</p>
                 <div class="grid grid-cols-2 gap-3 pt-3 border-t border-black/[0.03]">
                     <div class="bg-terra/40 p-3 rounded-xl">
-                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase tracking-wider">Autonomia Stimata</span>
+                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase tracking-wider">Autonomia Staccando Spine</span>
                         <span id="ai-kpi-runway" class="text-sm font-black text-testoscuro">0 giorni</span>
                     </div>
                     <div class="bg-terra/40 p-3 rounded-xl">
-                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase tracking-wider">Tasso Risparmio (SR)</span>
+                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase tracking-wider">Savings Rate Corrente</span>
                         <span id="ai-kpi-savingsrate" class="text-sm font-black text-verdescuro">0%</span>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-5">
-                <div class="flex items-center gap-2.5 mb-4">
-                    <div class="bg-blue-50 text-blue-800 p-2 rounded-xl"><i data-lucide="shopping-bag" class="w-4 h-4"></i></div>
-                    <div>
-                        <h3 class="font-bold text-xs text-testoscuro">Ottimizzazione Carrello Spesa</h3>
-                        <p class="text-[10px] text-grigiomorbido text-left">Filtra per supermercato vicino a te</p>
+            <!-- PANEL 2: MATRICE INDIPENDENZA FINANZIARIA (F.I.R.E. TRACKER) -->
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-4">
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="bg-purple-50 text-purple-800 p-1.5 rounded-lg"><i data-lucide="flame" class="w-4 h-4"></i></div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-grigiomorbido">F.I.R.E. Engine (Indipendenza Finanziaria)</span>
+                </div>
+                <p class="text-xs text-grigiomorbido leading-relaxed mb-3">
+                    Basato sulla regola matematica del 4%. Indica il capitale necessario per coprire le tue spese attuali per sempre senza lavorare.
+                </p>
+                <div class="space-y-2.5 bg-terra/30 p-3.5 rounded-xl border border-black/[0.01]">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-testoscuro font-medium">Traguardo Patrimoniale F.I.R.E.:</span>
+                        <span id="fire-target" class="text-xs font-black text-testoscuro">0,00€</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-testoscuro font-medium">Copertura Attuale Rendita:</span>
+                        <span id="fire-coverage" class="text-xs font-black text-purple-700">0.00%</span>
+                    </div>
+                    <div class="w-full bg-terra h-2 rounded-full overflow-hidden mt-1">
+                        <div id="fire-bar" class="bg-purple-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
                     </div>
                 </div>
-                <div class="mb-3.5">
-                    <select id="market-selector" onchange="analyzeMarket(this.value)" class="w-full bg-terra rounded-xl px-3.5 py-2.5 text-xs font-bold outline-none cursor-pointer text-testoscuro">
+            </div>
+
+            <!-- PANEL 3: STRESS TEST SCENARIO CIGNO NERO -->
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-4">
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="bg-rose-50 text-rose-800 p-1.5 rounded-lg"><i data-lucide="shield-alert" class="w-4 h-4"></i></div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-grigiomorbido">Stress Test Finanziario (Cigno Nero)</span>
+                </div>
+                <div class="divide-y divide-black/[0.03]">
+                    <div class="flex justify-between py-2 items-center">
+                        <span class="text-xs font-medium text-testoscuro">Shock 1: Emergenza Improvvisa (1.500€)</span>
+                        <span id="stress-shock-1" class="text-[10px] font-bold px-2 py-0.5 rounded-full">-</span>
+                    </div>
+                    <div class="flex justify-between py-2 items-center">
+                        <span class="text-xs font-medium text-testoscuro">Shock 2: Zero Entrate per 90 Giorni</span>
+                        <span id="stress-shock-2" class="text-[10px] font-bold px-2 py-0.5 rounded-full">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 4: METRICA STRUTTURALE 50/30/20 -->
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-4">
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="bg-amber-50 text-amber-800 p-1.5 rounded-lg"><i data-lucide="pie-chart" class="w-4 h-4"></i></div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-grigiomorbido">Checkup Strutturale Regola 50/30/20</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="bg-terra/40 p-2 rounded-xl">
+                        <span class="block text-[8px] font-bold text-grigiomorbido uppercase">Bisogni (50%)</span>
+                        <span id="rule-needs" class="text-xs font-black text-testoscuro">0%</span>
+                    </div>
+                    <div class="bg-terra/40 p-2 rounded-xl">
+                        <span class="block text-[8px] font-bold text-grigiomorbido uppercase">Desideri (30%)</span>
+                        <span id="rule-wants" class="text-xs font-black text-testoscuro">0%</span>
+                    </div>
+                    <div class="bg-terra/40 p-2 rounded-xl">
+                        <span class="block text-[8px] font-bold text-grigiomorbido uppercase">Risparmio (20%)</span>
+                        <span id="rule-savings" class="text-xs font-black text-verdescuro">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 5: COMPASS SUPERMERCATI -->
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-4">
+                <div class="flex items-center gap-2.5 mb-3">
+                    <div class="bg-blue-50 text-blue-800 p-1.5 rounded-xl"><i data-lucide="shopping-bag" class="w-4 h-4"></i></div>
+                    <div>
+                        <h3 class="font-bold text-xs text-testoscuro">Ottimizzazione Carrello Spesa</h3>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <select id="market-selector" onchange="analyzeMarket(this.value)" class="w-full bg-terra rounded-xl px-3 py-2.5 text-xs font-bold outline-none cursor-pointer text-testoscuro">
                         <option value="tosano">TOSANO (Grandi Scorte e Prezzi al KG Imbattibili)</option>
                         <option value="lidl">LIDL (Migliore Efficienza e Qualità Smart)</option>
                         <option value="aldi">ALDI (Qualità altissima sui prodotti Freschi)</option>
@@ -180,22 +249,24 @@
                         <option value="famila">FAMILA (Grandi Marche e Servizio al Banco)</option>
                     </select>
                 </div>
-                <div class="bg-terra/40 rounded-xl p-3.5 border border-black/[0.01] flex flex-col gap-2">
+                <div class="bg-terra/40 rounded-xl p-3 border border-black/[0.01] flex flex-col gap-2">
                     <div class="flex items-center justify-between">
                         <span id="market-name-label" class="text-xs font-black text-verdescuro uppercase tracking-wide">-</span>
-                        <span id="market-stars" class="text-[10px] bg-white px-2 py-0.5 rounded shadow-sm border border-black/[0.02] font-medium text-amber-600">⭐⭐⭐⭐⭐</span>
+                        <span id="market-stars" class="text-[10px] bg-white px-2 py-0.5 rounded shadow-sm font-medium text-amber-600">⭐⭐⭐⭐⭐</span>
                     </div>
                     <p id="market-analysis-text" class="text-xs text-grigiomorbido leading-relaxed mb-1">-</p>
-                    <a id="market-flyer-btn" href="#" target="_blank" class="w-full text-center bg-verdescuro text-white text-xs font-bold py-2.5 rounded-lg hover:bg-verdescurohover transition-all flex items-center justify-center gap-1.5 shadow-sm">
+                    <a id="market-flyer-btn" href="#" target="_blank" class="w-full text-center bg-verdescuro text-white text-xs font-bold py-2 rounded-lg hover:bg-verdescurohover transition-all flex items-center justify-center gap-1.5 shadow-sm">
                         <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Apri Volantino Digitale
                     </a>
                 </div>
             </div>
 
-            <h2 class="text-xs font-bold uppercase tracking-widest text-grigiomorbido mb-3 px-1">Consiglieri di Efficienza</h2>
+            <!-- PANEL 6: CONSIGLI OPERATIVI DINAMICI -->
+            <h2 class="text-xs font-bold uppercase tracking-widest text-grigiomorbido mb-2.5 px-1">Consiglieri di Efficienza Espansi</h2>
             <div id="ai-tips-container" class="space-y-2 px-1"></div>
         </div>
 
+        <!-- SEZIONE PORTAFOGLIO & INVESTIMENTI -->
         <div id="portfolio" class="view">
             <header class="mb-6">
                 <h1 class="text-2xl font-bold tracking-tight">Il tuo Portafoglio</h1>
@@ -293,6 +364,7 @@
 
     </div>
 
+    <!-- NAVBAR FIXED BOTTOM -->
     <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[94%] max-w-md bg-white/80 backdrop-blur-xl border border-black/[0.05] rounded-full px-4 py-3 shadow-2xl flex justify-between items-center z-50">
         <button onclick="showView('home')" class="nav-item active flex flex-col items-center gap-1 w-16 text-center"><i data-lucide="plus-circle" class="w-5 h-5"></i><span class="text-[9px] font-bold">Home</span></button>
         <button onclick="showView('archive')" class="nav-item flex flex-col items-center gap-1 w-16 text-center text-grigiomorbido"><i data-lucide="calendar" class="w-5 h-5"></i><span class="text-[9px] font-bold">Archivio</span></button>
@@ -303,28 +375,28 @@
 
     <script>
         const categories = [
-            { id: 'pranzo', name: 'Pranzo', icon: 'utensils', color: '#f59e0b' },
-            { id: 'spesa', name: 'Spesa', icon: 'shopping-cart', color: '#10b981' },
-            { id: 'casa', name: 'Casa', icon: 'home', color: '#3b82f6' },
-            { id: 'cena', name: 'Cena', icon: 'soup', color: '#8b5cf6' },
-            { id: 'aperitivo', name: 'Aperitivo', icon: 'glass-water', color: '#f43f5e' },
-            { id: 'uscita', name: 'Uscita', icon: 'ticket', color: '#ec4899' },
-            { id: 'holiday', name: 'Holiday', icon: 'palmtree', color: '#06b6d4' },
-            { id: 'amici', name: 'Amici', icon: 'users', color: '#6366f1' },
-            { id: 'luce', name: 'Luce', icon: 'zap', color: '#fbbf24' },
-            { id: 'gas', name: 'Gas', icon: 'flame', color: '#f97316' },
-            { id: 'utenze varie', name: 'Utenze', icon: 'file-text', color: '#94a3b8' },
-            { id: 'benzina', name: 'Benzina', icon: 'fuel', color: '#475569' },
-            { id: 'auto', name: 'Auto', icon: 'car', color: '#1e293b' },
-            { id: 'regalo', name: 'Regalo', icon: 'gift', color: '#d946ef' },
-            { id: 'trasporti', name: 'Trasporti', icon: 'bus', color: '#22c55e' },
-            { id: 'stipendio', name: 'Stipendio', icon: 'briefcase', color: '#1c3d27' },
-            { id: 'altre entrate', name: 'Altre Entrate', icon: 'trending-up', color: '#059669' },
-            { id: 'arbitro', name: 'Arbitro', icon: 'award', color: '#d97706' },
-            { id: 'shopping', name: 'Shopping', icon: 'shopping-bag', color: '#000000' },
-            { id: 'etf_world', name: 'ETF SWDA Globale', icon: 'globe', color: '#0284c7' },
-            { id: 'etf_emergenti', name: 'ETF EIMI Emergenti', icon: 'trending-up', color: '#f43f5e' },
-            { id: 'etf_bonds', name: 'ETF VAGF Obbligazioni', icon: 'shield', color: '#10b981' }
+            { id: 'pranzo', name: 'Pranzo', icon: 'utensils', color: '#f59e0b', type503020: 'needs' },
+            { id: 'spesa', name: 'Spesa', icon: 'shopping-cart', color: '#10b981', type503020: 'needs' },
+            { id: 'casa', name: 'Casa', icon: 'home', color: '#3b82f6', type503020: 'needs' },
+            { id: 'cena', name: 'Cena', icon: 'soup', color: '#8b5cf6', type503020: 'wants' },
+            { id: 'aperitivo', name: 'Aperitivo', icon: 'glass-water', color: '#f43f5e', type503020: 'wants' },
+            { id: 'uscita', name: 'Uscita', icon: 'ticket', color: '#ec4899', type503020: 'wants' },
+            { id: 'holiday', name: 'Holiday', icon: 'palmtree', color: '#06b6d4', type503020: 'wants' },
+            { id: 'amici', name: 'Amici', icon: 'users', color: '#6366f1', type503020: 'wants' },
+            { id: 'luce', name: 'Luce', icon: 'zap', color: '#fbbf24', type503020: 'needs' },
+            { id: 'gas', name: 'Gas', icon: 'flame', color: '#f97316', type503020: 'needs' },
+            { id: 'utenze varie', name: 'Utenze', icon: 'file-text', color: '#94a3b8', type503020: 'needs' },
+            { id: 'benzina', name: 'Benzina', icon: 'fuel', color: '#475569', type503020: 'needs' },
+            { id: 'auto', name: 'Auto', icon: 'car', color: '#1e293b', type503020: 'needs' },
+            { id: 'regalo', name: 'Regalo', icon: 'gift', color: '#d946ef', type503020: 'wants' },
+            { id: 'trasporti', name: 'Trasporti', icon: 'bus', color: '#22c55e', type503020: 'needs' },
+            { id: 'stipendio', name: 'Stipendio', icon: 'briefcase', color: '#1c3d27', type503020: 'income' },
+            { id: 'altre entrate', name: 'Altre Entrate', icon: 'trending-up', color: '#059669', type503020: 'income' },
+            { id: 'arbitro', name: 'Arbitro', icon: 'award', color: '#d97706', type503020: 'income' },
+            { id: 'shopping', name: 'Shopping', icon: 'shopping-bag', color: '#000000', type503020: 'wants' },
+            { id: 'etf_world', name: 'ETF SWDA Globale', icon: 'globe', color: '#0284c7', type503020: 'savings' },
+            { id: 'etf_emergenti', name: 'ETF EIMI Emergenti', icon: 'trending-up', color: '#f43f5e', type503020: 'savings' },
+            { id: 'etf_bonds', name: 'ETF VAGF Obbligazioni', icon: 'shield', color: '#10b981', type503020: 'savings' }
         ];
 
         const marketData = {
@@ -332,7 +404,7 @@
             lidl: { name: "Lidl", stars: "⭐⭐⭐⭐⭐ (5/5)", analysis: "Miglior bilanciamento d'Europa. Sfrutta l'app Lidl Plus per ottenere sconti pazzeschi.", url: "https://www.lidl.it/c/volantino-lidl/s10022713" },
             aldi: { name: "Aldi", stars: "⭐⭐⭐⭐★ (4.2/5)", analysis: "Discount moderno. Eccellente controllo filiera su ortofrutta e macelleria.", url: "https://www.aldi.it/it/offerte/volantino-aldi.html" },
             eurospin: { name: "Eurospin", stars: "⭐⭐⭐⭐★ (4.0/5)", analysis: "La scelta intelligente se l'obiettivo primario è tagliare il costo dello scontrino.", url: "https://www.eurospin.it/volantini/" },
-            famila: { name: "Famila", stars: "⭐⭐⭐★★ (3.8/5)", analysis: "Supermercato tradizionale eccellente per banchi serviti e tagli freschi.", url: "https://www.famila.it/volantini" }
+            famila: { name: "Famila", stars: "⭐⭐⭐★★ (3.8/5)", analysis: "Supermercato tradizionale eccellente per banchi serviti e tagli frescos.", url: "https://www.famila.it/volantini" }
         };
 
         let currentType = 'uscita';
@@ -560,7 +632,6 @@
             const currentMonthStr = now.toLocaleString('it-IT', { month: 'long', year: 'numeric' });
             const signals = getFuturesSignals();
 
-            // Calcolo entrate e uscite totali storiche per bilancio reale
             let totalIncome = 0, totalExpense = 0;
             transactions.forEach(t => {
                 if (t.type === 'entrata') totalIncome += t.amount;
@@ -568,7 +639,6 @@
             });
             let liquiditaDisponibile = totalIncome - totalExpense;
 
-            // Calcolo metriche mese corrente
             const currentMonthExpenses = transactions.filter(t => t.type === 'uscita' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
             const currentMonthIncomes = transactions.filter(t => t.type === 'entrata' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
             
@@ -580,7 +650,7 @@
             const runwayKpi = document.getElementById('ai-kpi-runway');
             const srKpi = document.getElementById('ai-kpi-savingsrate');
 
-            // 1. Calcolo Autonomia di Cassa (Runway)
+            // 1. RUNWAY TELEMETRIA
             if(totalExpMese > 0 && liquiditaDisponibile > 0) {
                 const dailyBurn = totalExpMese / now.getDate();
                 const giorniAutonomia = Math.round(liquiditaDisponibile / dailyBurn);
@@ -589,10 +659,11 @@
                 runwayKpi.innerText = liquiditaDisponibile <= 0 ? "0 giorni (Debito)" : "Calcolo in corso...";
             }
 
-            // 2. Calcolo Savings Rate (Tasso di Risparmio)
+            // 2. SAVINGS RATE
+            let savingsRate = 0;
             if(totalIncMese > 0) {
                 let risparmioNetto = totalIncMese - totalExpMese;
-                let savingsRate = ((risparmioNetto / totalIncMese) * 100);
+                savingsRate = ((risparmioNetto / totalIncMese) * 100);
                 srKpi.innerText = `${savingsRate > 0 ? savingsRate.toFixed(1) : 0}%`;
                 srKpi.className = savingsRate >= 30 ? "text-sm font-black text-emerald-600" : savingsRate >= 10 ? "text-sm font-black text-amber-500" : "text-sm font-black text-rose-500";
             } else {
@@ -600,45 +671,106 @@
                 srKpi.className = "text-sm font-black text-grigiomorbido";
             }
 
-            // 3. Descrizione e Stato Predittivo del Budget
+            // 3. STATO PROIEZIONE
             if(monthlyBudget === 0) {
                 badge.innerText = "In attesa"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 uppercase tracking-wider";
-                desc.innerText = "Imposta una soglia di budget mensile nella schermata Home per permettere all'intelligenza artificiale di calcolare il tasso di consumo finanziario e sbloccare la diagnostica.";
+                desc.innerText = "Imposta una soglia di budget mensile nella schermata Home per sbloccare la diagnostica predittiva di cassa.";
             } else {
                 const dailyBurn = totalExpMese / now.getDate();
                 const forecast = dailyBurn * new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-
                 if (forecast > monthlyBudget) {
                     badge.innerText = "Rischio Sforo"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 uppercase tracking-wider";
-                    desc.innerText = `Analisi predittiva: mantieni un consumo giornaliero di ${(dailyBurn).toFixed(1)}€. Proietterai a fine mese un passivo totale di ${forecast.toFixed(0)}€ su un limite massimo di ${monthlyBudget}€.`;
+                    desc.innerText = `Analisi predittiva: mantieni un consumo giornaliero elevato. Proietterai a fine mese un passivo totale di ${forecast.toFixed(0)}€ su un massimo di ${monthlyBudget}€.`;
                 } else {
                     badge.innerText = "Flessibilità Ottimale"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase tracking-wider";
-                    desc.innerText = `Ottima gestione dei flussi. La proiezione stima una spesa finale di ${forecast.toFixed(0)}€, lasciando un margine di sicurezza all'interno del budget stabilito.`;
+                    desc.innerText = `Ottima gestione dei flussi. La proiezione stima una spesa finale di ${forecast.toFixed(0)}€, lasciando un buon margine di sicurezza.`;
                 }
             }
 
-            // 4. CREAZIONE DINAMICA E ALGORITMICA DEI CONSIGLI SUI MICRO-SPRECHI
+            // 4. CALCOLO NUOVO PANEL: F.I.R.E. ENGINE
+            const fireTargetEl = document.getElementById('fire-target');
+            const fireCoverageEl = document.getElementById('fire-coverage');
+            const fireBar = document.getElementById('fire-bar');
+
+            let spesaAnnuaStimata = totalExpMese * 12;
+            if(spesaAnnuaStimata === 0) spesaAnnuaStimata = 15000; // Valore baseline di sicurezza
+            let capitaleFireNecessario = spesaAnnuaStimata * 25; // Moltiplicatore Standard Regola del 4%
+            fireTargetEl.innerText = `${capitaleFireNecessario.toLocaleString('it-IT', {maximumFractionDigits: 0})}€`;
+
+            if (liquiditaDisponibile > 0) {
+                let coperturaFire = (liquiditaDisponibile / capitaleFireNecessario) * 100;
+                fireCoverageEl.innerText = `${coperturaFire.toFixed(2)}%`;
+                fireBar.style.width = `${coperturaFire > 100 ? 100 : coperturaFire}%`;
+            } else {
+                fireCoverageEl.innerText = "0.00%";
+                fireBar.style.width = "0%";
+            }
+
+            // 5. CALCOLO NUOVO PANEL: STRESS TEST CIGNO NERO
+            const shock1El = document.getElementById('stress-shock-1');
+            const shock2El = document.getElementById('stress-shock-2');
+
+            if(liquiditaDisponibile >= 1500) {
+                shock1El.innerText = "SUPERATO"; shock1El.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800";
+            } else {
+                shock1El.innerText = "FALLITO"; shock1El.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-800";
+            }
+
+            let costo90Giorni = (totalExpMese > 0) ? (totalExpMese / now.getDate()) * 90 : 3000;
+            if(liquiditaDisponibile >= costo90Giorni && liquiditaDisponibile > 0) {
+                shock2El.innerText = "SICURO"; shock2El.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800";
+            } else {
+                shock2El.innerText = "VULNERABILE"; shock2El.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-800";
+            }
+
+            // 6. CALCOLO NUOVO PANEL: REGOLA 50/30/20
+            let totalNeeds = 0, totalWants = 0, totalSavings = 0;
+            currentMonthExpenses.forEach(t => {
+                const cat = categories.find(c => c.id === t.category);
+                if(cat) {
+                    if(cat.type503020 === 'needs') totalNeeds += t.amount;
+                    if(cat.type503020 === 'wants') totalWants += t.amount;
+                }
+            });
+            // Gli investimenti del mese corrente contano come risparmio
+            const currentMonthInvestments = transactions.filter(t => t.type === 'investimento' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
+            totalSavings = currentMonthInvestments.reduce((acc, t) => acc + t.amount, 0);
+
+            let spesaTotalePonderata = totalNeeds + totalWants + totalSavings;
+            if (spesaTotalePonderata > 0) {
+                document.getElementById('rule-needs').innerText = `${((totalNeeds / spesaTotalePonderata) * 100).toFixed(0)}%`;
+                document.getElementById('rule-wants').innerText = `${((totalWants / spesaTotalePonderata) * 100).toFixed(0)}%`;
+                document.getElementById('rule-savings').innerText = `${((totalSavings / spesaTotalePonderata) * 100).toFixed(0)}%`;
+            } else {
+                document.getElementById('rule-needs').innerText = "0%";
+                document.getElementById('rule-wants').innerText = "0%";
+                document.getElementById('rule-savings').innerText = "0%";
+            }
+
+            // 7. CREAZIONE CONSIGLI OPERATIVI ESPANSI
             const tipsContainer = document.getElementById('ai-tips-container');
             tipsContainer.innerHTML = '';
             const tips = [];
 
-            // Algoritmo di scansione categorie emozionali
             let speseEmozionali = currentMonthExpenses.filter(t => ['aperitivo', 'uscita', 'shopping'].includes(t.category)).reduce((acc, t) => acc + t.amount, 0);
-            
             if (speseEmozionali > (totalExpMese * 0.35)) {
-                tips.push({ title: "Rilevato Picco Spese Emozionali", body: "Aperitivi, Shopping e Uscite pesano per oltre il 35% del tuo outflow mensile. Consigliato raffreddare i consumi per 48 ore.", icon: "alert-triangle", color: "text-rose-700 bg-rose-50" });
-            } else if (totalExpMese > 0) {
-                tips.push({ title: "Lifestyle Inflation Sotto Controllo", body: "Ottimo! Le spese di svago sono perfettamente proporzionate e bilanciate rispetto ai tuoi costi fissi essenziali.", icon: "smile", color: "text-emerald-700 bg-emerald-50" });
+                tips.push({ title: "Alert: Frenesia Emozionale", body: "Uscite, aperitivi e acquisti impulsivi stanno assorbendo troppa liquidità operativa. Prova il blocco spese non necessarie di 48h.", icon: "alert-triangle", color: "text-rose-700 bg-rose-50" });
             }
 
-            // Alert basato sul Tasso di Risparmio
-            if (totalIncMese > 0 && (totalExpMese / totalIncMese) > 0.85) {
-                tips.push({ title: "Erosione Liquidità Operativa", body: "Stai consumando più dell'85% delle entrate correnti. Riduci i costi variabili per ripristinare il corretto margine di sicurezza.", icon: "trending-down", color: "text-amber-700 bg-amber-50" });
+            if (totalNeeds > (spesaTotalePonderata * 0.60)) {
+                tips.push({ title: "Costi Fissi Fuori SOGLIA", body: "Le tue spese fisse (Utenze, Spesa, Casa) superano il 60% dell'output. Verifica contratti di luce/gas o abbonamenti dormienti.", icon: "zap", color: "text-amber-700 bg-amber-50" });
             }
 
-            // Consiglio di default macro
-            if (signals.isBullish) {
-                tips.push({ title: "Efficienza d'Accumulo Corrente", body: "I mercati mostrano bassa volatilità (VIX stabile). Massimizza il surplus monetario per alimentare i tuoi investimenti.", icon: "zap", color: "text-blue-700 bg-blue-50" });
+            if (totalIncMese > 0 && savingsRate < 15) {
+                tips.push({ title: "Iniezione Capitale Mancante", body: "Stai salvando meno del 15% delle tue entrate. Imposta un bonifico ricorrente verso il PAC il giorno in cui ricevi lo stipendio.", icon: "wallet", color: "text-blue-700 bg-blue-50" });
+            }
+
+            if (liquiditaDisponibile > costo90Giorni) {
+                tips.push({ title: "Efficienza Fondo Emergenza", body: "Hai superato i 90 giorni di protezione finanziaria. La liquidità in eccesso può essere investita per combattere l'inflazione.", icon: "check-circle", color: "text-emerald-700 bg-emerald-50" });
+            }
+
+            if(tips.length === 0) {
+                tips.push({ title: "Nessun Alert Rilevato", body: "Il motore matematico non rileva anomalie comportamentali. Continua a tracciare con costanza.", icon: "smile", color: "text-emerald-700 bg-emerald-50" });
             }
 
             tips.forEach(tip => {
