@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Finance AI</title>
+    <title>MB Finance</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Collegamento al Manifest e attivazione Web App -->
+    <!-- Configurazione Web App MB Finance -->
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#1c3d27">
-    <meta name="apple-mobile-web-app-title" content="Finance AI">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2454/2454261.png">
+    <meta name="apple-mobile-web-app-title" content="MB Finance">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/ios-filled/512/1c3d27/v.png">
     
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
-                .then(() => console.log('Web App configurata con successo!'))
+                .then(() => console.log('MB Finance configurata con successo!'))
                 .catch((err) => console.log('Errore configurazione:', err));
         }
     </script>
@@ -28,8 +28,8 @@
             theme: {
                 extend: {
                     colors: {
-                        terra: '#f5f1ea',
-                        verdescuro: '#1c3d27',
+                        terra: '#f5f1ea', // Sfondo Panna
+                        verdescuro: '#1c3d27', // Verdone
                         verdescurohover: '#132b1c',
                         testoscuro: '#2b2927',
                         grigiomorbido: '#7e7873'
@@ -56,7 +56,7 @@
         <div id="home" class="view active">
             <header class="mb-5 flex justify-between items-center">
                 <div>
-                    <h1 class="text-2xl font-bold tracking-tight">Registro</h1>
+                    <h1 class="text-2xl font-bold tracking-tight">MB Finance</h1>
                     <p id="date-now" class="text-sm text-grigiomorbido capitalize"></p>
                 </div>
                 <div class="bg-white/80 border border-black/[0.02] rounded-2xl px-4 py-2 text-right shadow-sm">
