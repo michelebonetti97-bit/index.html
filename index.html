@@ -13,8 +13,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#1c3d27">
     <meta name="apple-mobile-web-app-title" content="MB Finance">
-        <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'><rect width='512' height='512' rx='120' fill='%23f5f1ea'/><text x='50%25' y='55%25' font-family='-apple-system, sans-serif' font-weight='bold' font-size='180' fill='%231c3d27' text-anchor='middle' dominant-baseline='middle'>MB</text></svg>">
-
+    <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'><rect width='512' height='512' rx='120' fill='%23f5f1ea'/><text x='50%25' y='55%25' font-family='-apple-system, sans-serif' font-weight='bold' font-size='180' fill='%231c3d27' text-anchor='middle' dominant-baseline='middle'>MB</text></svg>">
     
     <script>
         if ('serviceWorker' in navigator) {
@@ -29,8 +28,8 @@
             theme: {
                 extend: {
                     colors: {
-                        terra: '#f5f1ea', // Sfondo Panna
-                        verdescuro: '#1c3d27', // Verdone
+                        terra: '#f5f1ea', 
+                        verdescuro: '#1c3d27', 
                         verdescurohover: '#132b1c',
                         testoscuro: '#2b2927',
                         grigiomorbido: '#7e7873'
@@ -150,20 +149,82 @@
             <div id="chart-legend" class="grid grid-cols-2 gap-4 text-left px-2"></div>
         </div>
 
-        <!-- SEZIONE AI -->
+        <!-- SEZIONE AI POTENZIATA + SMART SHOPPING -->
         <div id="ai" class="view">
             <header class="mb-6">
                 <h1 class="text-2xl font-bold tracking-tight">AI Advisor</h1>
-                <p class="text-sm text-grigiomorbido">Consigli personalizzati</p>
+                <p class="text-sm text-grigiomorbido">Consulenza e ottimizzazione spesa</p>
             </header>
+            
+            <!-- Box Diagnosi Principale -->
             <div class="bg-verdescuro text-white rounded-[2rem] p-6 shadow-lg mb-6">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="bg-white/20 p-2 rounded-full"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
-                    <span class="font-bold">Analisi in tempo reale</span>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white/20 p-2 rounded-full"><i data-lucide="activity" class="w-5 h-5"></i></div>
+                        <span class="font-bold tracking-tight">Stato di Salute del Mese</span>
+                    </div>
+                    <span id="ai-health-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-white text-verdescuro uppercase tracking-wider">-</span>
                 </div>
-                <p id="ai-suggestion" class="text-sm leading-relaxed opacity-90 italic">Caricamento dati...</p>
+                <p id="ai-health-desc" class="text-sm leading-relaxed opacity-90">Caricamento analisi dei flussi di cassa...</p>
             </div>
-            <div id="ai-tips" class="space-y-4"></div>
+
+            <!-- Griglia dei Widget Diagnostici dell'AI -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-black/[0.01]">
+                    <span class="block text-[10px] font-bold uppercase tracking-wider text-grigiomorbido mb-1">Score Risparmio</span>
+                    <div class="flex items-baseline gap-2">
+                        <span id="ai-score-value" class="text-2xl font-bold text-testoscuro">-</span>
+                        <span id="ai-score-grade" class="text-sm font-bold text-verdescuro"></span>
+                    </div>
+                    <p id="ai-score-text" class="text-[11px] text-grigiomorbido mt-1 leading-snug">Calcolo tasso risparmio...</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-black/[0.01]">
+                    <span class="block text-[10px] font-bold uppercase tracking-wider text-grigiomorbido mb-1">Previsione Fine Mese</span>
+                    <span id="ai-forecast-value" class="text-xl font-bold block text-testoscuro">-</span>
+                    <p id="ai-forecast-text" class="text-[11px] text-grigiomorbido mt-1 leading-snug">Calcolo proiezione...</p>
+                </div>
+            </div>
+
+            <!-- NUOVA SEZIONE: COMPASS SUPERMERCATI E VOLANTINI -->
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-6">
+                <div class="flex items-center gap-2.5 mb-4">
+                    <div class="bg-amber-100 text-amber-800 p-2 rounded-xl"><i data-lucide="shopping-bag" class="w-5 h-5"></i></div>
+                    <div>
+                        <h3 class="font-bold text-sm text-testoscuro">Guida alla Spesa Smart</h3>
+                        <p class="text-[11px] text-grigiomorbido">Qualità/Prezzo e offerte attuali</p>
+                    </div>
+                </div>
+
+                <!-- Selettore Supermercato -->
+                <div class="mb-4">
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-grigiomorbido mb-1.5">Scegli un Supermercato per l'Analisi AI:</label>
+                    <select id="market-selector" onchange="analyzeMarket(this.value)" class="w-full bg-terra rounded-xl px-4 py-2.5 text-xs font-bold outline-none cursor-pointer">
+                        <option value="tosano">TOSANO (Re del Risparmio e Grandi Marche)</option>
+                        <option value="lidl">LIDL (Miglior rapporto Qualità/Prezzo Smart)</option>
+                        <option value="aldi">ALDI (Migliore qualità su prodotti freschi Discount)</option>
+                        <option value="eurospin">EUROSPIN (La Spesa Intelligente / Primo Prezzo)</option>
+                        <option value="famila">FAMILA (Migliori Marche e reparto Macelleria/Banco)</option>
+                    </select>
+                </div>
+
+                <!-- Box Risultato Analisi Dinamica Supermercato -->
+                <div class="bg-terra/70 rounded-xl p-3.5 mb-4 border border-black/[0.02]">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span id="market-name-label" class="text-xs font-bold uppercase tracking-wider text-verdescuro">-</span>
+                        <span id="market-stars" class="text-xs text-amber-500">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p id="market-analysis-text" class="text-xs text-testoscuro leading-relaxed mb-3">-</p>
+                    
+                    <!-- Link al volantino ufficiale -->
+                    <a id="market-flyer-btn" href="#" target="_blank" class="inline-flex items-center gap-1.5 bg-verdescuro hover:bg-verdescurohover text-white text-[11px] font-bold px-3 py-2 rounded-lg transition-all shadow-sm">
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Vedi Volantino e Offerte Web
+                    </a>
+                </div>
+            </div>
+
+            <h2 class="text-xs font-bold uppercase tracking-widest text-grigiomorbido mb-4 px-1">Consigli Operativi Generati dall'AI</h2>
+            <div id="ai-tips-container" class="space-y-3 px-1"></div>
         </div>
 
     </div>
@@ -199,6 +260,40 @@
             { id: 'shopping', name: 'Shopping', icon: 'shopping-bag', color: '#000000' }
         ];
 
+        // Database statico delle caratteristiche e link diretti
+        const marketData = {
+            tosano: {
+                name: "Supermercati Tosano",
+                stars: "⭐⭐⭐⭐★ (4.5/5 Spesa Famiglia)",
+                analysis: "Il re indiscusso del risparmio sui grandi volumi e sui prodotti confezionati di marca. Ideale per fare grandi scorte di dispensa (pasta, conserve, bevande). Meno intimo dei piccoli discount, ma imbattibile sul prezzo al kg dei marchi famosi. Consigliato per la spesa mensile pesante.",
+                url: "https://www.volantinofacile.it/tosano/volantino"
+            },
+            lidl: {
+                name: "Lidl",
+                stars: "⭐⭐⭐⭐⭐ (5/5 Qualità/Prezzo)",
+                analysis: "Miglior bilanciamento d'Europa. Ha una marcia in più sulle offerte della settimana 'settimanali' (reparto Parkside e no-food) e sui prodotti premium a marchio Italiamo. Ottimo reparto panetteria fresca interna. Sfrutta l'app Lidl Plus alla cassa per coupon extra.",
+                url: "https://www.lidl.it/c/volantino-lidl/s10022713"
+            },
+            aldi: {
+                name: "Aldi",
+                stars: "⭐⭐⭐⭐★ (4.2/5 Freschi e Carni)",
+                analysis: "Discount di stampo moderno. Eccelle in modo particolare sul reparto ortofrutta controllato e sulle carni fresche di origine italiana. Il design interno è pulitissimo e permette una spesa rapida. Ottimo per single o coppie che cercano qualità alta a prezzi da discount.",
+                url: "https://www.aldi.it/it/offerte/volantino-aldi.html"
+            },
+            eurospin: {
+                name: "Eurospin",
+                stars: "⭐⭐⭐⭐★ (4.0/5 Primo Prezzo)",
+                analysis: "La spesa intelligente se l'unico obiettivo è spendere il meno possibile sul totale dello scontrino. I marchi propri (Land, Tre Mulini) hanno prezzi insuperabili. Ideale per latticini, farine, base per dolci e prodotti di pulizia casa. Evita se cerchi solo marchi blasonati.",
+                url: "https://www.eurospin.it/volantini/"
+            },
+            famila: {
+                name: "Famila",
+                stars: "⭐⭐⭐★★ (3.8/5 Servizio e Banco)",
+                analysis: "Supermercato classico. Leggermente più caro della media dei discount sui prodotti confezionati, ma si riscatta totalmente nei banchi serviti: la macelleria e la salumeria offrono tagli e freschezza superiori. Compraci i freschi del giorno e sfrutta le offerte con carta club.",
+                url: "https://www.famila.it/volantini"
+            }
+        };
+
         let currentType = 'uscita';
         let transactions = JSON.parse(localStorage.getItem('fin_ai_data')) || [];
         let monthlyBudget = parseFloat(localStorage.getItem('fin_budget')) || 0;
@@ -210,9 +305,18 @@
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active', 'text-verdescuro'));
             event.currentTarget.classList.add('active', 'text-verdescuro');
             if(viewId === 'charts') renderChart();
-            if(viewId === 'ai') renderAI();
+            if(viewId === 'ai') { renderAI(); analyzeMarket(document.getElementById('market-selector').value); }
             if(viewId === 'archive') renderArchive();
             lucide.createIcons();
+        }
+
+        function analyzeMarket(marketKey) {
+            const data = marketData[marketKey];
+            if(!data) return;
+            document.getElementById('market-name-label').innerText = data.name;
+            document.getElementById('market-stars').innerText = data.stars;
+            document.getElementById('market-analysis-text').innerText = data.analysis;
+            document.getElementById('market-flyer-btn').href = data.url;
         }
 
         function setType(type) {
@@ -339,6 +443,106 @@
             lucide.createIcons();
         }
 
+        function renderAI() {
+            const now = new Date();
+            const currentDay = now.getDate();
+            const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+            const currentMonthStr = now.toLocaleString('it-IT', { month: 'long', year: 'numeric' });
+
+            const currentMonthExpenses = transactions.filter(t => t.type === 'uscita' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
+            const currentMonthIncomes = transactions.filter(t => t.type === 'entrata' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
+
+            let totalExp = 0;
+            let catTotals = {};
+            currentMonthExpenses.forEach(t => {
+                totalExp += t.amount;
+                catTotals[t.category] = (catTotals[t.category] || 0) + t.amount;
+            });
+
+            let totalInc = 0;
+            currentMonthIncomes.forEach(t => totalInc += t.amount);
+
+            const badge = document.getElementById('ai-health-badge');
+            const desc = document.getElementById('ai-health-desc');
+            const forecastVal = document.getElementById('ai-forecast-value');
+            const forecastTxt = document.getElementById('ai-forecast-text');
+
+            if(monthlyBudget === 0) {
+                badge.innerText = "Info";
+                badge.className = "text-xs font-bold px-3 py-1 rounded-full bg-amber-500 text-white uppercase tracking-wider";
+                desc.innerText = "Imposta un Budget Mensile nella scheda principale per attivare l'algoritmo predittivo di fine mese.";
+                forecastVal.innerText = "N/D";
+                forecastTxt.innerText = "Budget non configurato.";
+            } else {
+                const dailyBurnRate = totalExp / currentDay;
+                const estimatedFinalExpense = dailyBurnRate * daysInMonth;
+                forecastVal.innerText = `${estimatedFinalExpense.toFixed(0)}€`;
+
+                if (estimatedFinalExpense > monthlyBudget) {
+                    badge.innerText = "Rischio Sforo";
+                    badge.className = "text-xs font-bold px-3 py-1 rounded-full bg-rose-500 text-white uppercase tracking-wider";
+                    desc.innerText = `Attenzione: mantieni una media di spesa di ${dailyBurnRate.toFixed(2)}€ al giorno. Se continui così, a fine mese supererai il budget impostato di circa ${(estimatedFinalExpense - monthlyBudget).toFixed(0)}€.`;
+                    forecastTxt.innerText = "Supererai il budget allocato.";
+                } else {
+                    badge.innerText = "In Linea";
+                    badge.className = "text-xs font-bold px-3 py-1 rounded-full bg-emerald-500 text-white uppercase tracking-wider";
+                    desc.innerText = `Ottimo ritmo! Con una spesa media di ${dailyBurnRate.toFixed(2)}€ al giorno, la proiezione indica che chiuderai il mese risparmiando ${(monthlyBudget - estimatedFinalExpense).toFixed(0)}€ dal budget stanziato.`;
+                    forecastTxt.innerText = "Entro i limiti del budget.";
+                }
+            }
+
+            const scoreVal = document.getElementById('ai-score-value');
+            const scoreGrade = document.getElementById('ai-score-grade');
+            const scoreTxt = document.getElementById('ai-score-text');
+
+            if(totalInc === 0) {
+                scoreVal.innerText = "-";
+                scoreGrade.innerText = "";
+                scoreTxt.innerText = "Nessun'entrata registrata questo mese.";
+            } else {
+                const savingsRate = ((totalInc - totalExp) / totalInc) * 100;
+                scoreVal.innerText = `${savingsRate.toFixed(0)}%`;
+                
+                if(savingsRate >= 30) { scoreGrade.innerText = "A+"; scoreTxt.innerText = "Livello investitore. Risparmi più del 30%."; }
+                else if(savingsRate >= 15) { scoreGrade.innerText = "B"; scoreTxt.innerText = "Buon cuscino finanziario. Continua così."; }
+                else if(savingsRate >= 0) { scoreGrade.innerText = "C"; scoreTxt.innerText = "Margine ridotto. Prova ad ottimizzare i vizi."; }
+                else { scoreGrade.innerText = "F"; scoreTxt.innerText = "Sei in perdita. Stai attingendo ai risparmi passati."; }
+            }
+
+            const tipsContainer = document.getElementById('ai-tips-container');
+            tipsContainer.innerHTML = '';
+            let tipsGenerated = 0;
+
+            if ((catTotals['aperitivo'] || 0) > 80) {
+                tipsContainer.innerHTML += createTipWidget('glass-water', 'Taglio Spese Svago', `Hai speso ${catTotals['aperitivo'].toFixed(0)}€ in aperitivi questo mese. Limitando solo 2 uscite nei prossimi giorni potresti recuperare circa 30€.`);
+                tipsGenerated++;
+            }
+            if ((catTotals['shopping'] || 0) > 150) {
+                tipsContainer.innerHTML += createTipWidget('shopping-bag', 'Regola delle 48 Ore', `Lo Shopping incide per ${catTotals['shopping'].toFixed(0)}€. Prima del prossimo acquisto non essenziale, aspetta 48 ore: l'impulso svanirà nel 70% dei casi.`);
+                tipsGenerated++;
+            }
+            if ((catTotals['cena'] || 0) > (catTotals['spesa'] || 0) && (catTotals['cena'] || 0) > 100) {
+                tipsContainer.innerHTML += createTipWidget('soup', 'Bilanciamento Ristoranti', 'Questo mese la spesa per le cene fuori supera quella della spesa domestica. Prova ad invertire il trend questa settimana.');
+                tipsGenerated++;
+            }
+            if (tipsGenerated === 0) {
+                tipsContainer.innerHTML += createTipWidget('sparkles', 'Strategia dei Micro-Risparmi', 'Nessuna anomalia critica rilevata. Applica la regola del Pay-Yourself-First: sposta il 10% delle entrate in un fondo separato appena arrivano.');
+            }
+
+            lucide.createIcons();
+        }
+
+        function createTipWidget(icon, title, body) {
+            return `
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-black/[0.01] flex gap-4 items-start">
+                    <div class="bg-terra p-2.5 rounded-xl text-verdescuro shrink-0"><i data-lucide="${icon}" class="w-5 h-5"></i></div>
+                    <div>
+                        <h4 class="text-sm font-bold text-testoscuro mb-0.5">${title}</h4>
+                        <p class="text-xs text-grigiomorbido leading-relaxed">${body}</p>
+                    </div>
+                </div>`;
+        }
+
         function exportToExcel() {
             if (transactions.length === 0) {
                 alert("Non ci sono dati da esportare!");
@@ -384,20 +588,6 @@
             });
         }
 
-        function renderAI() {
-            const expenses = transactions.filter(t => t.type === 'uscita');
-            if(expenses.length === 0) {
-                document.getElementById('ai-suggestion').innerText = "Inizia a registrare qualche spesa per ricevere i miei consigli!";
-                return;
-            }
-            const catTotals = {};
-            expenses.forEach(t => catTotals[t.category] = (catTotals[t.category] || 0) + t.amount);
-            let tip = "Analisi completata. Il tuo profilo di spesa è equilibrato.";
-            if((catTotals['aperitivo'] || 0) > (catTotals['spesa'] || 1) * 0.5) tip = "Ho notato che spendi molto in 'Aperitivi' rispetto alla 'Spesa Casa'. Forse potresti limitare le uscite settimanali per risparmiare.";
-            else if ((catTotals['shopping'] || 0) > 200) tip = "Questo mese lo shopping ha inciso molto. Valuta di rimandare gli acquisti non essenziali al prossimo mese.";
-            document.getElementById('ai-suggestion').innerText = `"${tip}"`;
-        }
-
         function renderArchive() {
             const groups = transactions.reduce((acc, t) => {
                 const month = new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' });
@@ -434,6 +624,7 @@
             if(monthlyBudget > 0) document.getElementById('budget-input').value = monthlyBudget;
             setDefaultDate();
             updateHome();
+            analyzeMarket('tosano'); // Valore di default all'avvio
             lucide.createIcons();
         });
     </script>
