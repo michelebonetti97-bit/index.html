@@ -137,26 +137,35 @@
         <div id="ai" class="view">
             <header class="mb-6">
                 <h1 class="text-2xl font-bold tracking-tight">AI Advisor Pro</h1>
-                <p class="text-sm text-grigiomorbido">Telemetria di spesa e ottimizzazione carrello</p>
+                <p class="text-sm text-grigiomorbido">Motore predittivo e ottimizzazione finanziaria</p>
             </header>
             
             <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-5">
-                <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center gap-2">
-                        <div class="bg-blue-50 text-blue-700 p-1.5 rounded-lg"><i data-lucide="activity" class="w-4 h-4"></i></div>
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-grigiomorbido">Proiezione Flussi & Cashflow</span>
+                        <div class="bg-emerald-50 text-emerald-800 p-1.5 rounded-lg"><i data-lucide="activity" class="w-4 h-4"></i></div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-grigiomorbido">Salute Predittiva Cashflow</span>
                     </div>
                     <span id="ai-health-badge" class="text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider bg-terra text-grigiomorbido">-</span>
                 </div>
-                <p id="ai-health-desc" class="text-xs leading-relaxed text-testoscuro/90 mb-3">-</p>
-                <div class="w-full bg-terra h-1.5 rounded-full overflow-hidden">
-                    <div id="ai-health-bar" class="bg-verdescuro h-full transition-all duration-500 rounded-full" style="width: 0%"></div>
+                
+                <p id="ai-health-desc" class="text-xs leading-relaxed text-testoscuro/90 mb-4">-</p>
+                
+                <div class="grid grid-cols-2 gap-3 pt-3 border-t border-black/[0.03]">
+                    <div class="bg-terra/40 p-3 rounded-xl">
+                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase tracking-wider">Autonomia Stimata</span>
+                        <span id="ai-kpi-runway" class="text-sm font-black text-testoscuro">0 giorni</span>
+                    </div>
+                    <div class="bg-terra/40 p-3 rounded-xl">
+                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase tracking-wider">Tasso Risparmio (SR)</span>
+                        <span id="ai-kpi-savingsrate" class="text-sm font-black text-verdescuro">0%</span>
+                    </div>
                 </div>
             </div>
 
             <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-5">
                 <div class="flex items-center gap-2.5 mb-4">
-                    <div class="bg-emerald-50 text-emerald-800 p-2 rounded-xl"><i data-lucide="shopping-bag" class="w-4 h-4"></i></div>
+                    <div class="bg-blue-50 text-blue-800 p-2 rounded-xl"><i data-lucide="shopping-bag" class="w-4 h-4"></i></div>
                     <div>
                         <h3 class="font-bold text-xs text-testoscuro">Ottimizzazione Carrello Spesa</h3>
                         <p class="text-[10px] text-grigiomorbido text-left">Filtra per supermercato vicino a te</p>
@@ -183,7 +192,7 @@
                 </div>
             </div>
 
-            <h2 class="text-xs font-bold uppercase tracking-widest text-grigiomorbido mb-3 px-1">Consigli Algoritmici</h2>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-grigiomorbido mb-3 px-1">Consiglieri di Efficienza</h2>
             <div id="ai-tips-container" class="space-y-2 px-1"></div>
         </div>
 
@@ -323,7 +332,7 @@
             lidl: { name: "Lidl", stars: "⭐⭐⭐⭐⭐ (5/5)", analysis: "Miglior bilanciamento d'Europa. Sfrutta l'app Lidl Plus per ottenere sconti pazzeschi.", url: "https://www.lidl.it/c/volantino-lidl/s10022713" },
             aldi: { name: "Aldi", stars: "⭐⭐⭐⭐★ (4.2/5)", analysis: "Discount moderno. Eccellente controllo filiera su ortofrutta e macelleria.", url: "https://www.aldi.it/it/offerte/volantino-aldi.html" },
             eurospin: { name: "Eurospin", stars: "⭐⭐⭐⭐★ (4.0/5)", analysis: "La scelta intelligente se l'obiettivo primario è tagliare il costo dello scontrino.", url: "https://www.eurospin.it/volantini/" },
-            famila: { name: "Famila", stars: "⭐⭐⭐★★ (3.8/5)", analysis: "Supermercato tradicional eccellente per banchi serviti e tagli freschi.", url: "https://www.famila.it/volantini" }
+            famila: { name: "Famila", stars: "⭐⭐⭐★★ (3.8/5)", analysis: "Supermercato tradizionale eccellente per banchi serviti e tagli freschi.", url: "https://www.famila.it/volantini" }
         };
 
         let currentType = 'uscita';
@@ -472,7 +481,6 @@
             const currentMonthStr = now.toLocaleString('it-IT', { month: 'long', year: 'numeric' });
             const signals = getFuturesSignals();
 
-            // Aggiorna Futures Realtime dentro la Tab Portafoglio
             const sp500El = document.getElementById('signal-sp500');
             const nasdaqEl = document.getElementById('signal-nasdaq');
             const vixEl = document.getElementById('signal-vix');
@@ -552,50 +560,85 @@
             const currentMonthStr = now.toLocaleString('it-IT', { month: 'long', year: 'numeric' });
             const signals = getFuturesSignals();
 
-            // Calcolo Salute Finanziaria Precoce
+            // Calcolo entrate e uscite totali storiche per bilancio reale
+            let totalIncome = 0, totalExpense = 0;
+            transactions.forEach(t => {
+                if (t.type === 'entrata') totalIncome += t.amount;
+                else if (t.type === 'uscita') totalExpense += t.amount;
+            });
+            let liquiditaDisponibile = totalIncome - totalExpense;
+
+            // Calcolo metriche mese corrente
             const currentMonthExpenses = transactions.filter(t => t.type === 'uscita' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
-            let totalExp = currentMonthExpenses.reduce((acc, t) => acc + t.amount, 0);
+            const currentMonthIncomes = transactions.filter(t => t.type === 'entrata' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
+            
+            let totalExpMese = currentMonthExpenses.reduce((acc, t) => acc + t.amount, 0);
+            let totalIncMese = currentMonthIncomes.reduce((acc, t) => acc + t.amount, 0);
 
             const badge = document.getElementById('ai-health-badge');
             const desc = document.getElementById('ai-health-desc');
-            const healthBar = document.getElementById('ai-health-bar');
+            const runwayKpi = document.getElementById('ai-kpi-runway');
+            const srKpi = document.getElementById('ai-kpi-savingsrate');
 
+            // 1. Calcolo Autonomia di Cassa (Runway)
+            if(totalExpMese > 0 && liquiditaDisponibile > 0) {
+                const dailyBurn = totalExpMese / now.getDate();
+                const giorniAutonomia = Math.round(liquiditaDisponibile / dailyBurn);
+                runwayKpi.innerText = `${giorniAutonomia} giorni`;
+            } else {
+                runwayKpi.innerText = liquiditaDisponibile <= 0 ? "0 giorni (Debito)" : "Calcolo in corso...";
+            }
+
+            // 2. Calcolo Savings Rate (Tasso di Risparmio)
+            if(totalIncMese > 0) {
+                let risparmioNetto = totalIncMese - totalExpMese;
+                let savingsRate = ((risparmioNetto / totalIncMese) * 100);
+                srKpi.innerText = `${savingsRate > 0 ? savingsRate.toFixed(1) : 0}%`;
+                srKpi.className = savingsRate >= 30 ? "text-sm font-black text-emerald-600" : savingsRate >= 10 ? "text-sm font-black text-amber-500" : "text-sm font-black text-rose-500";
+            } else {
+                srKpi.innerText = "0% (No Income)";
+                srKpi.className = "text-sm font-black text-grigiomorbido";
+            }
+
+            // 3. Descrizione e Stato Predittivo del Budget
             if(monthlyBudget === 0) {
                 badge.innerText = "In attesa"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 uppercase tracking-wider";
-                desc.innerText = "Imposta una soglia di budget mensile nella schermata Home per permettere all'intelligenza artificiale di calcolare il tasso di consumo finanziario.";
-                healthBar.style.width = "0%";
+                desc.innerText = "Imposta una soglia di budget mensile nella schermata Home per permettere all'intelligenza artificiale di calcolare il tasso di consumo finanziario e sbloccare la diagnostica.";
             } else {
-                const dailyBurn = totalExp / now.getDate();
+                const dailyBurn = totalExpMese / now.getDate();
                 const forecast = dailyBurn * new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-                let percentageOfBudget = (totalExp / monthlyBudget) * 100;
-                healthBar.style.width = `${Math.min(percentageOfBudget, 100)}%`;
 
                 if (forecast > monthlyBudget) {
                     badge.innerText = "Rischio Sforo"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 uppercase tracking-wider";
-                    desc.innerText = `Attenzione: l'attuale velocità di spesa proietta un passivo a fine mese pari a ${forecast.toFixed(0)}€ contro un limite di ${monthlyBudget}€. Ridurre le uscite non necessarie.`;
-                    healthBar.className = "bg-rose-500 h-full transition-all duration-500 rounded-full";
+                    desc.innerText = `Analisi predittiva: mantieni un consumo giornaliero di ${(dailyBurn).toFixed(1)}€. Proietterai a fine mese un passivo totale di ${forecast.toFixed(0)}€ su un limite massimo di ${monthlyBudget}€.`;
                 } else {
-                    badge.innerText = "Flessibilità Ideale"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase tracking-wider";
-                    desc.innerText = `Ottima gestione dei flussi di cassa. La proiezione a fine mese stima un avanzo residuo. Continua così per massimizzare il capitale da destinare ai mercati.`;
-                    healthBar.className = "bg-emerald-600 h-full transition-all duration-500 rounded-full";
+                    badge.innerText = "Flessibilità Ottimale"; badge.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase tracking-wider";
+                    desc.innerText = `Ottima gestione dei flussi. La proiezione stima una spesa finale di ${forecast.toFixed(0)}€, lasciando un margine di sicurezza all'interno del budget stabilito.`;
                 }
             }
 
-            // CREAZIONE DINAMICA DEI CONSIGLI ALGORITMICI
+            // 4. CREAZIONE DINAMICA E ALGORITMICA DEI CONSIGLI SUI MICRO-SPRECHI
             const tipsContainer = document.getElementById('ai-tips-container');
             tipsContainer.innerHTML = '';
-
             const tips = [];
-            if(signals.isBullish) {
-                tips.push({ title: "Sentiment Macro Rialzista", body: "I segnali macro indicano stabilità globale. Ottimo momento per pianificare i prossimi acquisti di quote azionarie.", icon: "trending-up", color: "text-emerald-700 bg-emerald-50" });
-            } else {
-                tips.push({ title: "Volatilità in Aumento", body: "Mercati speculativi nervosi. Monitora la liquidità disponibile ed evita movimenti affrettati di trading emozionale.", icon: "shield-alert", color: "text-amber-700 bg-amber-50" });
+
+            // Algoritmo di scansione categorie emozionali
+            let speseEmozionali = currentMonthExpenses.filter(t => ['aperitivo', 'uscita', 'shopping'].includes(t.category)).reduce((acc, t) => acc + t.amount, 0);
+            
+            if (speseEmozionali > (totalExpMese * 0.35)) {
+                tips.push({ title: "Rilevato Picco Spese Emozionali", body: "Aperitivi, Shopping e Uscite pesano per oltre il 35% del tuo outflow mensile. Consigliato raffreddare i consumi per 48 ore.", icon: "alert-triangle", color: "text-rose-700 bg-rose-50" });
+            } else if (totalExpMese > 0) {
+                tips.push({ title: "Lifestyle Inflation Sotto Controllo", body: "Ottimo! Le spese di svago sono perfettamente proporzionate e bilanciate rispetto ai tuoi costi fissi essenziali.", icon: "smile", color: "text-emerald-700 bg-emerald-50" });
             }
 
-            if(monthlyBudget > 0 && totalExp > (monthlyBudget * 0.7)) {
-                tips.push({ title: "Saturazione Budget > 70%", body: "Hai consumato gran parte del budget mensile. Considera di bloccare lo shopping non essenziale nei prossimi 7 giorni.", icon: "zap", color: "text-rose-700 bg-rose-50" });
-            } else {
-                tips.push({ title: "Costi Fissi Sotto Controllo", body: "Le spese per utenze e trasporti sono stabili. Ottimo lavoro sulla riduzione dei costi ricorrenti strutturali.", icon: "check-circle", color: "text-blue-700 bg-blue-50" });
+            // Alert basato sul Tasso di Risparmio
+            if (totalIncMese > 0 && (totalExpMese / totalIncMese) > 0.85) {
+                tips.push({ title: "Erosione Liquidità Operativa", body: "Stai consumando più dell'85% delle entrate correnti. Riduci i costi variabili per ripristinare il corretto margine di sicurezza.", icon: "trending-down", color: "text-amber-700 bg-amber-50" });
+            }
+
+            // Consiglio di default macro
+            if (signals.isBullish) {
+                tips.push({ title: "Efficienza d'Accumulo Corrente", body: "I mercati mostrano bassa volatilità (VIX stabile). Massimizza il surplus monetario per alimentare i tuoi investimenti.", icon: "zap", color: "text-blue-700 bg-blue-50" });
             }
 
             tips.forEach(tip => {
