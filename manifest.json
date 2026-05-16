@@ -8,11 +8,10 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "https://img.icons8.com/ios-filled/512/1c3d27/v.png",
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'><rect width='512' height='512' rx='120' fill='%23f5f1ea'/><text x='50%25' y='55%25' font-family='-apple-system, sans-serif' font-weight='bold' font-size='180' fill='%231c3d27' text-anchor='middle' dominant-baseline='middle'>MB</text></svg>",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ]
 }
-
