@@ -41,7 +41,6 @@
 
     <div class="max-w-md mx-auto px-4 pt-6">
         
-        <!-- SEZIONE HOME -->
         <div id="home" class="view active">
             <header class="mb-5 flex justify-between items-center">
                 <div>
@@ -54,7 +53,6 @@
                 </div>
             </header>
 
-            <!-- CARD BUDGET -->
             <section class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-5">
                 <div class="flex justify-between items-center mb-3">
                     <div>
@@ -74,7 +72,6 @@
                 </div>
             </section>
 
-            <!-- FORM TRANSAZIONI -->
             <div class="bg-white rounded-[2rem] p-6 shadow-sm border border-black/[0.02] mb-6">
                 <form onsubmit="addTransaction(event)">
                     <div class="grid grid-cols-3 gap-2 p-1 bg-terra rounded-2xl mb-5">
@@ -113,14 +110,104 @@
             <div id="recent-list" class="space-y-3 px-1"></div>
         </div>
 
-        <!-- SEZIONE NUOVA: PORTAFOGLIO & INVESTIMENTI -->
+        <div id="archive" class="view">
+            <header class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">Archivio</h1>
+                    <p class="text-sm text-grigiomorbido">Storico mesi precedenti</p>
+                </div>
+                <button onclick="exportToExcel()" class="bg-verdescuro hover:bg-verdescurohover text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Backup Excel
+                </button>
+            </header>
+            <div id="archive-list" class="space-y-4"></div>
+        </div>
+
+        <div id="charts" class="view text-center">
+            <header class="mb-6 text-left">
+                <h1 class="text-2xl font-bold tracking-tight">Analisi Spese</h1>
+                <p class="text-sm text-grigiomorbido">Distribuzione categorie</p>
+            </header>
+            <div class="bg-white rounded-[2rem] p-6 shadow-sm mb-6">
+                <canvas id="categoryChart"></canvas>
+            </div>
+            <div id="chart-legend" class="grid grid-cols-2 gap-4 text-left px-2"></div>
+        </div>
+
+        <div id="ai" class="view">
+            <header class="mb-6">
+                <h1 class="text-2xl font-bold tracking-tight">AI Advisor Pro</h1>
+                <p class="text-sm text-grigiomorbido">Analisi Quantitativa Macro e Portafoglio</p>
+            </header>
+            
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-6">
+                <span class="block text-[9px] font-black uppercase tracking-widest text-grigiomorbido mb-3">Market Intelligence Futures Signals</span>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="bg-terra p-2.5 rounded-xl">
+                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase">S&P 500 Fut</span>
+                        <span id="signal-sp500" class="text-xs font-black text-emerald-600">+0.42%</span>
+                    </div>
+                    <div class="bg-terra p-2.5 rounded-xl">
+                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase">Nasdaq Fut</span>
+                        <span id="signal-nasdaq" class="text-xs font-black text-emerald-600">+0.68%</span>
+                    </div>
+                    <div class="bg-terra p-2.5 rounded-xl">
+                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase">VIX Index Fut</span>
+                        <span id="signal-vix" class="text-xs font-black text-rose-600">14.20</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-verdescuro text-white rounded-[2rem] p-6 shadow-lg mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white/20 p-2 rounded-full"><i data-lucide="activity" class="w-5 h-5"></i></div>
+                        <span class="font-bold tracking-tight">Salute Finanziaria</span>
+                    </div>
+                    <span id="ai-health-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-white text-verdescuro uppercase tracking-wider">-</span>
+                </div>
+                <p id="ai-health-desc" class="text-sm leading-relaxed opacity-90">Caricamento analisi dei flussi di cassa...</p>
+            </div>
+
+            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-6">
+                <div class="flex items-center gap-2.5 mb-4">
+                    <div class="bg-amber-100 text-amber-800 p-2 rounded-xl"><i data-lucide="shopping-bag" class="w-5 h-5"></i></div>
+                    <div>
+                        <h3 class="font-bold text-sm text-testoscuro">Guida alla Spesa Smart</h3>
+                        <p class="text-[11px] text-grigiomorbido">Analisi di mercato e volantini</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <select id="market-selector" onchange="analyzeMarket(this.value)" class="w-full bg-terra rounded-xl px-4 py-2.5 text-xs font-bold outline-none cursor-pointer">
+                        <option value="tosano">TOSANO (Grandi Scorte e Prezzi al KG Imbattibili)</option>
+                        <option value="lidl">LIDL (Migliore Efficienza e Qualità Smart)</option>
+                        <option value="aldi">ALDI (Qualità altissima sui prodotti Freschi)</option>
+                        <option value="eurospin">EUROSPIN (Primo Prezzo e Spesa Intelligente)</option>
+                        <option value="famila">FAMILA (Grandi Marche e Servizio al Banco)</option>
+                    </select>
+                </div>
+                <div class="bg-terra/70 rounded-xl p-3.5 mb-4 border border-black/[0.02]">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span id="market-name-label" class="text-xs font-bold uppercase tracking-wider text-verdescuro">-</span>
+                        <span id="market-stars" class="text-xs text-amber-500">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p id="market-analysis-text" class="text-xs text-testoscuro leading-relaxed mb-3">-</p>
+                    <a id="market-flyer-btn" href="#" target="_blank" class="inline-flex items-center gap-1.5 bg-verdescurohover text-white text-[11px] font-bold px-3 py-2 rounded-lg transition-all shadow-sm">
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Vedi Volantino Online
+                    </a>
+                </div>
+            </div>
+
+            <h2 class="text-xs font-bold uppercase tracking-widest text-grigiomorbido mb-4 px-1">Consigli Operativi AI</h2>
+            <div id="ai-tips-container" class="space-y-3 px-1"></div>
+        </div>
+
         <div id="portfolio" class="view">
             <header class="mb-6">
                 <h1 class="text-2xl font-bold tracking-tight">Il tuo Portafoglio</h1>
                 <p class="text-sm text-grigiomorbido">Asset allocation e telemetria rendimenti</p>
             </header>
 
-            <!-- CONTATORE RESA % GIORNO 0 -->
             <div class="bg-gradient-to-br from-verdescuro to-emerald-950 text-white rounded-[2rem] p-6 shadow-xl mb-6">
                 <div class="flex justify-between items-center mb-4">
                     <span class="text-[10px] font-black uppercase tracking-widest opacity-75">Resa Capitale Investito</span>
@@ -133,7 +220,6 @@
                 <p class="text-[11px] opacity-75 mt-2 leading-relaxed">Il rendimento calcola la performance aggregata dal primo investimento storico inserito ad oggi.</p>
             </div>
 
-            <!-- PAC STRATEGICO ETF CON COLLEGAMENTI JUSTETF -->
             <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-6">
                 <div class="flex items-center gap-2.5 mb-4">
                     <div class="bg-emerald-100 text-emerald-800 p-2 rounded-xl"><i data-lucide="trending-up" class="w-5 h-5"></i></div>
@@ -190,111 +276,14 @@
             </div>
         </div>
 
-        <!-- SEZIONE ARCHIVIO -->
-        <div id="archive" class="view">
-            <header class="flex justify-between items-center mb-6">
-                <div>
-                    <h1 class="text-2xl font-bold tracking-tight">Archivio</h1>
-                    <p class="text-sm text-grigiomorbido">Storico mesi precedenti</p>
-                </div>
-                <button onclick="exportToExcel()" class="bg-verdescuro hover:bg-verdescurohover text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
-                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Backup Excel
-                </button>
-            </header>
-            <div id="archive-list" class="space-y-4"></div>
-        </div>
-
-        <!-- SEZIONE GRAFICI -->
-        <div id="charts" class="view text-center">
-            <header class="mb-6 text-left">
-                <h1 class="text-2xl font-bold tracking-tight">Analisi Spese</h1>
-                <p class="text-sm text-grigiomorbido">Distribuzione categorie</p>
-            </header>
-            <div class="bg-white rounded-[2rem] p-6 shadow-sm mb-6">
-                <canvas id="categoryChart"></canvas>
-            </div>
-            <div id="chart-legend" class="grid grid-cols-2 gap-4 text-left px-2"></div>
-        </div>
-
-        <!-- SEZIONE AI CON ANALISI FUTURES & SUPERMERCATI -->
-        <div id="ai" class="view">
-            <header class="mb-6">
-                <h1 class="text-2xl font-bold tracking-tight">AI Advisor Pro</h1>
-                <p class="text-sm text-grigiomorbido">Analisi Quantitativa Macro e Portafoglio</p>
-            </header>
-            
-            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-6">
-                <span class="block text-[9px] font-black uppercase tracking-widest text-grigiomorbido mb-3">Market Intelligence Futures Signals</span>
-                <div class="grid grid-cols-3 gap-2 text-center">
-                    <div class="bg-terra p-2.5 rounded-xl">
-                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase">S&P 500 Fut</span>
-                        <span id="signal-sp500" class="text-xs font-black text-emerald-600">+0.42%</span>
-                    </div>
-                    <div class="bg-terra p-2.5 rounded-xl">
-                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase">Nasdaq Fut</span>
-                        <span id="signal-nasdaq" class="text-xs font-black text-emerald-600">+0.68%</span>
-                    </div>
-                    <div class="bg-terra p-2.5 rounded-xl">
-                        <span class="block text-[9px] font-bold text-grigiomorbido uppercase">VIX Index Fut</span>
-                        <span id="signal-vix" class="text-xs font-black text-rose-600">14.20</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-verdescuro text-white rounded-[2rem] p-6 shadow-lg mb-6">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-white/20 p-2 rounded-full"><i data-lucide="activity" class="w-5 h-5"></i></div>
-                        <span class="font-bold tracking-tight">Salute Finanziaria</span>
-                    </div>
-                    <span id="ai-health-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-white text-verdescuro uppercase tracking-wider">-</span>
-                </div>
-                <p id="ai-health-desc" class="text-sm leading-relaxed opacity-90">Caricamento analisi dei flussi di cassa...</p>
-            </div>
-
-            <!-- COMPASS SUPERMERCATI -->
-            <div class="bg-white rounded-[2rem] p-5 shadow-sm border border-black/[0.02] mb-6">
-                <div class="flex items-center gap-2.5 mb-4">
-                    <div class="bg-amber-100 text-amber-800 p-2 rounded-xl"><i data-lucide="shopping-bag" class="w-5 h-5"></i></div>
-                    <div>
-                        <h3 class="font-bold text-sm text-testoscuro">Guida alla Spesa Smart</h3>
-                        <p class="text-[11px] text-grigiomorbido">Analisi di mercato e volantini</p>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <select id="market-selector" onchange="analyzeMarket(this.value)" class="w-full bg-terra rounded-xl px-4 py-2.5 text-xs font-bold outline-none cursor-pointer">
-                        <option value="tosano">TOSANO (Grandi Scorte e Prezzi al KG Imbattibili)</option>
-                        <option value="lidl">LIDL (Migliore Efficienza e Qualità Smart)</option>
-                        <option value="aldi">ALDI (Qualità altissima sui prodotti Freschi)</option>
-                        <option value="eurospin">EUROSPIN (Primo Prezzo e Spesa Intelligente)</option>
-                        <option value="famila">FAMILA (Grandi Marche e Servizio al Banco)</option>
-                    </select>
-                </div>
-                <div class="bg-terra/70 rounded-xl p-3.5 mb-4 border border-black/[0.02]">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <span id="market-name-label" class="text-xs font-bold uppercase tracking-wider text-verdescuro">-</span>
-                        <span id="market-stars" class="text-xs text-amber-500">⭐⭐⭐⭐⭐</span>
-                    </div>
-                    <p id="market-analysis-text" class="text-xs text-testoscuro leading-relaxed mb-3">-</p>
-                    <a id="market-flyer-btn" href="#" target="_blank" class="inline-flex items-center gap-1.5 bg-verdescurohover text-white text-[11px] font-bold px-3 py-2 rounded-lg transition-all shadow-sm">
-                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Vedi Volantino Online
-                    </a>
-                </div>
-            </div>
-
-            <h2 class="text-xs font-bold uppercase tracking-widest text-grigiomorbido mb-4 px-1">Consigli Operativi AI</h2>
-            <div id="ai-tips-container" class="space-y-3 px-1"></div>
-        </div>
-
     </div>
 
-    <!-- NAVBAR AGGIORNATA CON ICONA PORTAFOGLIO (5 VOCI TOTALE) -->
     <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[94%] max-w-md bg-white/80 backdrop-blur-xl border border-black/[0.05] rounded-full px-4 py-3 shadow-2xl flex justify-between items-center z-50">
         <button onclick="showView('home')" class="nav-item active flex flex-col items-center gap-1 w-16 text-center"><i data-lucide="plus-circle" class="w-5 h-5"></i><span class="text-[9px] font-bold">Home</span></button>
-        <button onclick="showView('portfolio')" class="nav-item flex flex-col items-center gap-1 w-16 text-center text-grigiomorbido"><i data-lucide="wallet" class="w-5 h-5"></i><span class="text-[9px] font-bold">Portafoglio</span></button>
         <button onclick="showView('archive')" class="nav-item flex flex-col items-center gap-1 w-16 text-center text-grigiomorbido"><i data-lucide="calendar" class="w-5 h-5"></i><span class="text-[9px] font-bold">Archivio</span></button>
         <button onclick="showView('charts')" class="nav-item flex flex-col items-center gap-1 w-16 text-center text-grigiomorbido"><i data-lucide="pie-chart" class="w-5 h-5"></i><span class="text-[9px] font-bold">Grafici</span></button>
         <button onclick="showView('ai')" class="nav-item flex flex-col items-center gap-1 w-16 text-center text-grigiomorbido"><i data-lucide="bot" class="w-5 h-5"></i><span class="text-[9px] font-bold">AI Advisor</span></button>
+        <button onclick="showView('portfolio')" class="nav-item flex flex-col items-center gap-1 w-16 text-center text-grigiomorbido"><i data-lucide="wallet" class="w-5 h-5"></i><span class="text-[9px] font-bold">Portafoglio</span></button>
     </nav>
 
     <script>
@@ -328,7 +317,7 @@
             lidl: { name: "Lidl", stars: "⭐⭐⭐⭐⭐ (5/5)", analysis: "Miglior bilanciamento d'Europa. Sfrutta l'app Lidl Plus per ottenere sconti pazzeschi.", url: "https://www.lidl.it/c/volantino-lidl/s10022713" },
             aldi: { name: "Aldi", stars: "⭐⭐⭐⭐★ (4.2/5)", analysis: "Discount moderno. Eccellente controllo filiera su ortofrutta e macelleria.", url: "https://www.aldi.it/it/offerte/volantino-aldi.html" },
             eurospin: { name: "Eurospin", stars: "⭐⭐⭐⭐★ (4.0/5)", analysis: "La scelta intelligente se l'obiettivo primario è tagliare il costo dello scontrino.", url: "https://www.eurospin.it/volantini/" },
-            famila: { name: "Famila", stars: "⭐⭐⭐★★ (3.8/5)", analysis: "Supermercato tradizionale eccellente per banchi serviti e tagli freschi.", url: "https://www.famila.it/volantini" }
+            famila: { name: "Famila", stars: "⭐⭐⭐★★ (3.8/5)", analysis: "Supermercato tradizionale eccellente per banchi serviti e tagli frescos.", url: "https://www.famila.it/volantini" }
         };
 
         let currentType = 'uscita';
@@ -476,7 +465,6 @@
             const currentMonthStr = now.toLocaleString('it-IT', { month: 'long', year: 'numeric' });
             const signals = getFuturesSignals();
 
-            // Calcolo Giorno 0 e Investimenti Totali
             const investimenti = transactions.filter(t => t.type === 'investimento');
             const totalInvestedDisplay = document.getElementById('total-invested-display');
             const perfPercentage = document.getElementById('performance-percentage');
@@ -488,7 +476,6 @@
                 perfPercentage.className = "text-lg font-bold text-grigiomorbido";
                 giornoZeroLabel.innerText = "Giorno 0: Nessuno";
             } else {
-                // Prendi il primo investimento in ordine cronologico (il più vecchio)
                 const sortedInv = [...investimenti].sort((a,b) => new Date(a.date) - new Date(b.date));
                 const primoInvestimentoDate = new Date(sortedInv[0].date).toLocaleDateString('it-IT');
                 giornoZeroLabel.innerText = `Giorno 0: ${primoInvestimentoDate}`;
@@ -496,13 +483,11 @@
                 let totalCapitaleVersato = investimenti.reduce((acc, t) => acc + t.amount, 0);
                 totalInvestedDisplay.innerText = `${totalCapitaleVersato.toFixed(2)} €`;
 
-                // Simulazione calcolo resa algoritmica basata sul momentum attuale dei futures da Giorno 0
-                let performanceSimulata = signals.isBullish ? 3.42 : -1.15; // Un piccolo plus/minus quantitativo reale
+                let performanceSimulata = signals.isBullish ? 3.42 : -1.15;
                 perfPercentage.innerText = `${performanceSimulata > 0 ? '+' : ''}${performanceSimulata.toFixed(2)}%`;
                 perfPercentage.className = performanceSimulata >= 0 ? "text-lg font-bold text-emerald-400" : "text-lg font-bold text-rose-400";
             }
 
-            // OTTIMIZZAZIONE PAC
             const currentMonthIncomes = transactions.filter(t => t.type === 'entrata' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
             const currentMonthExpenses = transactions.filter(t => t.type === 'uscita' && new Date(t.date).toLocaleString('it-IT', { month: 'long', year: 'numeric' }) === currentMonthStr);
             
