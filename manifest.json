@@ -1,6 +1,6 @@
 {
-  "name": "Finance AI",
-  "short_name": "Finance AI",
+  "name": "MB Finance",
+  "short_name": "MB Finance",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#f5f1ea",
@@ -8,7 +8,7 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/2454/2454261.png",
+      "src": "https://img.icons8.com/ios-filled/512/1c3d27/v.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
