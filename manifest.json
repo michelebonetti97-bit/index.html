@@ -1,0 +1,17 @@
+{
+  "name": "Finance AI",
+  "short_name": "Finance AI",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f5f1ea",
+  "theme_color": "#1c3d27",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2454/2454261.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
